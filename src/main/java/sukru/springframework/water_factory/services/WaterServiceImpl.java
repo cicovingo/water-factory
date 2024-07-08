@@ -12,7 +12,7 @@ public class WaterServiceImpl implements WaterService{
 
     @Override
     public WaterDto getWaterById(UUID waterId) {
-        return WaterDto.builder().id(UUID.randomUUID()).waterName("Clean").waterStyle("resource").build();
+        return WaterDto.builder().id(UUID.randomUUID()).waterName("Fruit").waterStyle("fruit_juice").build();
     }
 
     @Override
