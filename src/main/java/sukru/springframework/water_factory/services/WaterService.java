@@ -6,4 +6,6 @@ import java.util.UUID;
 
 public interface WaterService {
     WaterDto getWaterById(UUID waterId);
+
+    WaterDto saveNewWater(WaterDto waterDto);
 }
