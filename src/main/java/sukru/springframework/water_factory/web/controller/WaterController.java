@@ -24,12 +24,26 @@ public class WaterController {
     }
 
     @PostMapping
-    public ResponseEntity handlePost(WaterDto waterDto){
+    public ResponseEntity handlePost(@RequestBody WaterDto waterDto){
         WaterDto savedDto = waterService.saveNewWater(waterDto);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", "api/v1/water"+savedDto.getId().toString());
 
         return new ResponseEntity(headers, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{waterId}")
+    public ResponseEntity handleUpdate(@PathVariable("waterId") UUID waterId, @RequestBody WaterDto waterDto){
+
+        waterService.updateWater(waterId, waterDto);
+
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping("/{waterId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteWater(@PathVariable("waterId") UUID waterId){
+        waterService.deleteById(waterId);
     }
 }

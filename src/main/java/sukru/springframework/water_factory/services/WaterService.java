@@ -8,4 +8,8 @@ public interface WaterService {
     WaterDto getWaterById(UUID waterId);
 
     WaterDto saveNewWater(WaterDto waterDto);
+
+    void updateWater(UUID waterId, WaterDto waterDto);
+
+    void deleteById(UUID waterId);
 }
