@@ -4,6 +4,9 @@ import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+
+@Slf4j
 @Validated
 @RequestMapping("api/v2/water")
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 public class WaterControllerV2 {
 
@@ -34,9 +39,12 @@ public class WaterControllerV2 {
 
     @PostMapping
     public ResponseEntity handlePost(@Valid @NotNull @RequestBody WaterDtoV2 waterDto){
-        WaterDtoV2 savedDto = waterServiceV2.saveNewWater(waterDto);
 
-        HttpHeaders headers = new HttpHeaders();
+        log.debug("in handle post...");
+
+        val savedDto = waterServiceV2.saveNewWater(waterDto);
+
+        val headers = new HttpHeaders();
         headers.add("Location", "api/v1/water"+savedDto.getId().toString());
 
         return new ResponseEntity(headers, HttpStatus.CREATED);
