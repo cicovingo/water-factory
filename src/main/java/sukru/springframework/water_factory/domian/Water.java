@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import sukru.springframework.water_factory.web.model.v2.WaterStyle;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
 @Data
@@ -17,5 +18,8 @@ public class Water {
     private String waterName;
     private WaterStyle waterStyle;
     private Long upc;
+
+    private Timestamp createdDate;
+    private Timestamp lastUpdatedDate;
 }
 

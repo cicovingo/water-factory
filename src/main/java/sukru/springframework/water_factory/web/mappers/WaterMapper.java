@@ -4,7 +4,7 @@ import org.mapstruct.Mapper;
 import sukru.springframework.water_factory.domian.Water;
 import sukru.springframework.water_factory.web.model.WaterDto;
 
-@Mapper
+@Mapper(uses ={DateMapper.class})
 public interface WaterMapper {
 
     WaterDto waterToWaterDto(Water water);
