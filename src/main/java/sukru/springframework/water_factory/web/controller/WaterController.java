@@ -1,5 +1,6 @@
 package sukru.springframework.water_factory.web.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class WaterController {
     }
 
     @PostMapping
-    public ResponseEntity handlePost(@RequestBody WaterDto waterDto){
+    public ResponseEntity handlePost(@Valid @RequestBody WaterDto waterDto){
         WaterDto savedDto = waterService.saveNewWater(waterDto);
 
         HttpHeaders headers = new HttpHeaders();
@@ -34,7 +35,7 @@ public class WaterController {
     }
 
     @PutMapping("/{waterId}")
-    public ResponseEntity handleUpdate(@PathVariable("waterId") UUID waterId, @RequestBody WaterDto waterDto){
+    public ResponseEntity handleUpdate(@PathVariable("waterId") UUID waterId, @Valid @RequestBody WaterDto waterDto){
 
         waterService.updateWater(waterId, waterDto);
 
